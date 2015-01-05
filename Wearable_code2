@@ -1,29 +1,21 @@
-//int gun = 10;
-//int received_data=A0;
 int readgun=0;
 int score=0;
 int health=100;
 int ammo=50;
 int heart_beat;
 
-int look_up[10]={1,3,9,5,12,13,15,4,2,3,3};
+int look_up[10]={3,9,5,12,13,15,4,2,3,3};
 int i;
+int flag=1;
 
 void setup()
 {                
   
 pinMode(A0,INPUT);
 Serial.begin(9600);
-Serial.print("PLAYER   ");
-Serial.print("SCORE   ");
-Serial.print("AMMO   ");
-Serial.print("HEART BEAT    ");
-Serial.println("HEALTH");
-Serial.println("------------------------------------------------------------");
 
 }
 
-// the loop routine runs over and over again forever:
 void loop()
 {
 
@@ -49,19 +41,40 @@ if(readgun!=0 && readgun<190)
   i=0;
   heart_beat=60+look_up[i];
   
-  Serial.print("DEV    ");
+  Serial.print("PLAYER   ");
+  Serial.print("SCORE   ");
+  Serial.print("AMMO   ");
+  Serial.print("HEART BEAT    ");
+  Serial.println("HEALTH");
+  Serial.println("----------------------------------------------------");
+  Serial.print("DEV      ");
   Serial.print(score);
+  Serial.print("      ");
   Serial.print(ammo);
+  Serial.print("      ");
   Serial.print(heart_beat);
-  Serial.println("100");
+  Serial.print("      ");
+  Serial.println("    100");
   Serial.print("BASHA    ");
-  Serial.print("0");
-  Serial.print("50");
+  Serial.print("0       ");
+  Serial.print("50    ");
   Serial.print("No info");
   if(health<=0)
-  Serial.println("DEAD");
+  {
+  Serial.println("   DEAD");
+  Serial.println(" ");
+  }
   else
+  {
+  Serial.print("       ");
   Serial.println(health);
+  Serial.println(" ");
+  }
+  if(ammo<=0 || health<=0)
+  {
+    Serial.println("             GAME OVER!              ");
+    while(1);
+  }
   delay(100);
 }
 
