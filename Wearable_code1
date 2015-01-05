@@ -1,0 +1,42 @@
+//int gun = 10;
+//int received_data=A0;
+int readgun=0;
+int score=0;
+int health=100;
+
+void setup()
+{                
+  
+  //pinMode(gun, OUTPUT); 
+pinMode(A0,INPUT);
+Serial.begin(9600);
+
+}
+
+// the loop routine runs over and over again forever:
+void loop()
+{
+
+  if(analogRead(A0)<190)
+{ 
+  while(analogRead(A0)<190);
+  if(analogRead(A0)>190)
+ {
+  delay(100);
+  readgun=analogRead(A0);  
+ }
+}
+else
+   readgun=0;
+
+//if(readgun!=0 && readgun>190)
+//Serial.println("DEV FIRED");
+if(readgun!=0 && readgun<190)
+{
+  score+=10;
+  Serial.print("Score:");
+  Serial.println(score);
+  delay(100);
+}
+
+}
