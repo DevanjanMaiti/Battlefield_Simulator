@@ -1,0 +1,68 @@
+//int gun = 10;
+//int received_data=A0;
+int readgun=0;
+int score=0;
+int health=100;
+int ammo=50;
+int heart_beat;
+
+int look_up[10]={1,3,9,5,12,13,15,4,2,3,3};
+int i;
+
+void setup()
+{                
+  
+pinMode(A0,INPUT);
+Serial.begin(9600);
+Serial.print("PLAYER   ");
+Serial.print("SCORE   ");
+Serial.print("AMMO   ");
+Serial.print("HEART BEAT    ");
+Serial.println("HEALTH");
+Serial.println("------------------------------------------------------------");
+
+}
+
+// the loop routine runs over and over again forever:
+void loop()
+{
+
+  if(analogRead(A0)<190)
+{ 
+  while(analogRead(A0)<190);
+  if(analogRead(A0)>190)
+ {
+  delay(100);
+  readgun=analogRead(A0);  
+ }
+}
+else
+   readgun=0;
+
+if(readgun!=0 && readgun<190)
+{
+  score+=10;
+  ammo--;
+  health-=20;
+  i++;
+  if(i>9)
+  i=0;
+  heart_beat=60+look_up[i];
+  
+  Serial.print("DEV    ");
+  Serial.print(score);
+  Serial.print(ammo);
+  Serial.print(heart_beat);
+  Serial.println("100");
+  Serial.print("BASHA    ");
+  Serial.print("0");
+  Serial.print("50");
+  Serial.print("No info");
+  if(health<=0)
+  Serial.println("DEAD");
+  else
+  Serial.println(health);
+  delay(100);
+}
+
+}
