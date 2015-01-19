@@ -52,6 +52,22 @@ void loop()
   
   digitalWrite(5,HIGH);//power supply for shirt
   
+    buttonState = digitalRead(2);
+  //delay(500); //doubtful
+  //if (buttonState != lastButtonState)
+  //{
+  
+  
+    if(buttonState==HIGH && ammo>0)
+    {
+      digitalWrite(3,HIGH);
+
+      delay(1000);
+      digitalWrite(3,LOW);
+      ammo--;
+    }
+    
+  
   
   cap=analogRead(A0);
   shirt=analogRead(A1);
@@ -105,21 +121,7 @@ void loop()
   }
   }
   
-  buttonState = digitalRead(2);
-  //delay(500); //doubtful
-  //if (buttonState != lastButtonState)
-  //{
-  
-  
-    if(buttonState==HIGH && ammo>0)
-    {
-      digitalWrite(3,HIGH);
 
-      delay(1000);
-      digitalWrite(3,LOW);
-      ammo--;
-    }
-    
   
   
   //lastButtonState=buttonState; 
